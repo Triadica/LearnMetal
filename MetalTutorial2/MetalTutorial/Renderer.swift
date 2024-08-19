@@ -42,9 +42,9 @@ class Renderer: NSObject, MTKViewDelegate {
         
         //Create vertex buffer
         let vertices: [Vertex] = [
-            Vertex(position: simd_float2(-0.5, -0.5), color: simd_float3(1.0, 0.0, 0.0)), //vertex 0
-            Vertex(position: simd_float2( 0.5, -0.5), color: simd_float3(0.0, 1.0, 0.0)), //vertex 1
-            Vertex(position: simd_float2( 0.0,  0.5), color: simd_float3(0.0, 0.0, 1.0))  //vertex 2
+            Vertex(position: simd_float2(-1.0, -1.0), color: simd_float3(1.0, 0.0, 0.0)), //vertex 0
+            Vertex(position: simd_float2( 1, -1.0), color: simd_float3(0.0, 1.0, 0.0)), //vertex 1
+            Vertex(position: simd_float2( 0,  1), color: simd_float3(0.0, 0.0, 1.0))  //vertex 2
         ]
         
         self.vertexBuffer = self.device.makeBuffer(bytes: vertices, length: vertices.count * MemoryLayout.stride(ofValue: vertices[0]), options: MTLResourceOptions.storageModeShared)!
@@ -58,7 +58,7 @@ class Renderer: NSObject, MTKViewDelegate {
         
         //Retrieve render pass descriptor and change the background color
         let renderPassDescriptor = view.currentRenderPassDescriptor!
-        renderPassDescriptor.colorAttachments[0].clearColor = MTLClearColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 1.0)
+        renderPassDescriptor.colorAttachments[0].clearColor = MTLClearColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
         
         //Create render command encoder
         let renderEncoder = commandBuffer.makeRenderCommandEncoder(descriptor: renderPassDescriptor)!
